@@ -1,0 +1,29 @@
+main {
+    padding: 20px 10px;
+    padding-top: 100px;
+    padding-bottom: 400px;
+}
+.view {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.headline {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #979797;
+}
+
+#number {
+    background-color: #eeeeee;
+    padding: 5px 10px;
+}
+
+.more {
+    margin-top: 40px;
+}
+
+.more a:hover{
+    color: orange;
+}

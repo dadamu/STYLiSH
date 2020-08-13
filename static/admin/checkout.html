@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stylish Uesr Sign In</title>
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/adminCreate.css" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Checkout Create</h1>
+        <section id="listSection" class="container form">
+            <h2>Order List</h2>
+            <div class="inputDiv">Search<br />
+                <input id="search" type="text" name="search">
+            </div>
+            <form id="listForm">
+                <div class="inputDiv">idSelector<br />
+                    <select id="idSelector" name="idSelector">
+                        <option value="">Select One Product by Search</option>
+                    </select>
+                </div>
+                <div class="inputDiv">Title<br />
+                    <input type="text" name="title" id="title" readonly>
+                </div>
+                <div class="inputDiv">Price<br />
+                    <input type="text" name="price" id="price" readonly>
+                </div>
+                <div class="inputDiv">Color<br />
+                    <select id="color" name="color">
+                        <option value="">Select One Color</option>
+                    </select>
+                </div>
+                <div class="inputDiv">Color Code<br />
+                    <input  type="text" id="code" name="code" readonly>
+                </div>
+                <div class="inputDiv">Size<br />
+                    <select id="size" name="size">
+                        <option value="">Select One Size</option>
+                    </select>
+                </div>
+                <div class="inputDiv">Quantity<br />
+                    <input type="text" id="qty" name="qty" value="1">
+                </div>
+            </form>
+            <hr>
+            <div id="listError" class="submitMsg error"></div>
+            <input id="listSubmit" type="submit" class="submit" value="Add">
+            <hr>
+            <div>list view
+                <div id="listView"></div>
+            </div>
+        </section>
+        <section id="recipientSection" class="container form">
+            <h2>Recipient</h2>
+            <form id="recipientForm">
+                <div class="inputDiv">Name<br />
+                    <input type="text" id="name" name="name" value="test1">
+                </div>
+                <div class="inputDiv">Phone<br />
+                    <input type="text" name="phone" value="0912345678">
+                </div>
+                <div class="inputDiv">Email<br />
+                    <input type="text" id="email" name="email" value="test1@test.com">
+                </div>
+                <div class="inputDiv">Address<br />
+                    <input type="text" name="address" value="Taipei Taiwan">
+                </div>
+                <div class="inputDiv">Time<br />
+                    <select name="time">
+                        <option value="morning">morning</option>
+                        <option value="afternoon">afternoon</option>
+                        <option value="anytime">anytime</option>
+                    </select>
+                </div>
+            </form>
+            <hr>
+            <div id="recipientError" class="submitMsg error"></div>
+            <input id="recipientSubmit" type="submit" class="submit" value="Use Cookie">
+        </section>
+        <section id="orderSection" class="container form">
+            <h2>Order</h2>
+            <form id="orderForm">
+                <div class="inputDiv">Shipping<br />
+                    <input type="text" name="shipping" value="delivery">
+                </div>
+                <div class="inputDiv">Payment<br />
+                    <input type="text" name="payment" value="credit_card">
+                </div>
+                <div class="inputDiv">Subtotal<br />
+                    <input id="subtotal" type="text" name="subtotal" value="0" readonly>
+                </div>
+                <div class="inputDiv">Freight<br />
+                    <input id="freight" type="text" name="freight" value="200" readonly>
+                </div>
+                <div class="inputDiv">Total<br />
+                    <input id="total" type="text" name="total" value="200" readonly>
+                </div>
+            </form>
+        </section>
+        <section id="cardSection" class="container form">
+            <h2>Card Info</h2>
+            <form>
+                <div class="inputDiv">Card Number<br />
+                    <div class="tpfield" id="card-number"></div>
+                </div>
+                <div class="inputDiv">Expriation Date<br />
+                    <div class="tpfield" id="card-expiration-date"></div>
+                </div>
+                <div class="inputDiv">CCV<br />
+                    <div class="tpfield" id="card-ccv"></div>
+                </div>
+            </form>
+            <hr>
+            <div id="cardError" class="submitMsg error"></div>
+            <input id="TPSubmit" type="submit" class="submit" value="Get Prime">
+        </section>
+    </div>
+</body>
+
+<script src="https://js.tappaysdk.com/tpdirect/v5.1.0"></script>
+<script src="/js/postData.js"></script>
+<script src="/js/checkout/getData.js"></script>
+<script src="/js/checkout/cardSetting.js"></script>
+<script src="/js/checkout/orderList.js"></script>
+<script src="/js/checkout/recipient.js"></script>
+<script src="/js/checkout/submitData.js"></script>
+
+</html>

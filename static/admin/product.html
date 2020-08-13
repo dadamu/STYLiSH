@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stylish Product Management</title>
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/adminCreate.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <h1>Create a New Product</h1>
+    <section id="productinfoSection" class="container form">
+      <h3>Product Info</h3>
+      <form id="infoForm">
+        <div class="inputDiv">ID<br>
+          <input id="id" type="text" name="id" />
+        </div>
+        <div class="inputDiv">Title<br>
+          <input id="title" type="text" name="title" /></div>
+        <div class="inputDiv">Category<br>
+          <select id="category" name="category">
+            <option value="women">Women</option>
+            <option value="men">Men</option>
+            <option value="accessories">Accessories</option>
+          </select>
+        </div>
+        <div class="inputDiv">
+          Description<br>
+          <textarea id="description" name="description"></textarea>
+        </div>
+        <div class="inputDiv">Price<br>
+          <input id="price" type="text" name="price">
+        </div>
+        <div class="inputDiv">Texture<br>
+          <input id="texture" type="text" name="texture">
+        </div>
+        <div class="inputDiv">Wash<br>
+          <input id="wash" type="text" name="wash">
+        </div>
+        <div class="inputDiv">Place<br>
+          <input id="place" type="text" name="place">
+        </div>
+        <div class="inputDiv">Note<br>
+          <input id="note" type="text" name="note">
+        </div>
+        <div class="inputDiv">Story<br>
+          <textarea id="story" type="text" name="story"></textarea>
+        </div>
+      </form>
+      <hr>
+      <div id="createInfoErrorMsg" class="submitMsg error"></div>
+      <input id="createInfo" type="submit" class="submit" value="Create Info">
+    </section>
+    <section id="imageSection" class="container form">
+      <h3>Image</h3>
+      <div class="inputDiv">Info Id<br>
+        <input class="product_info_id" id="uploadInfoId" type="text" name="productInfoId">
+      </div>
+      <form id="uploadForm" action="/api/1.0/upload" method="POST" enctype="multipart/form-data">
+        <div class="inputDiv">Main Image
+          <input id="mainImage" accept="image/*" type="file" name="main_image">
+          <img src="" class="img_preview" id="mainImagePreview"></img>
+        </div>
+        <div class="inputDiv">Other Images
+          <input type="file" accept="image/*" id="otherImages" name="other_images" multiple>
+          <div id="otherPreviewDiv"></div>
+        </div>
+      </form>
+      <hr>
+      <div id="uploadErrorMsg" class="submitMsg error"></div>
+      <input id="uploadImage" type=submit class="submit" value="upload">
+    </section>
+    <section id="variantSection" class="container form">
+      <div id="variantInput">
+        <div id="variantBox">
+          <h3>Variant</h3>
+          <div class="inputDiv">Info Id<br>
+            <input class="product_info_id" id="variantInfoId" type="text" name="product_info_id">
+          </div>
+          <div class="inputDiv">Size<br>
+            <select id="sizeSelector" name="size">
+              <option value="XL">XL</option>
+              <option value="L">L</option>
+              <option value="M">M</option>
+              <option value="S">S</option>
+            </select></div>
+          <div class="inputDiv">Color Name<br>
+            <input id="colorName" type="text" name="color_name">
+          </div>
+          <div class="inputDiv">Color Code<br>
+            <input id="colorCode" type="text" name="color_code">
+          </div>
+          <div class="inputDiv">Stock<br>
+            <input id="stock" type="text" name="stock">
+          </div>
+        </div>
+        <div id="variantErrorMsg" class="error"></div>
+        <div class="inputDiv">
+          <input id="addVariant" type=submit value="new variant">
+        </div>
+      </div>
+      <hr>
+      <div id="createErrorMsg" class="submitMsg error"></div>
+      <input id="create" type="submit" class="submit" value="Create">
+  </div>
+</body>
+<script src="/js/postData.js"></script>
+<script src="/js/product/addProductInfo.js"></script>
+<script src="/js/product/uploadImage.js"></script>
+<script src="/js/product/previewImages.js"></script>
+<script src="/js/product/addVariant.js"></script>
+<script src="/js/product/postProduct.js"></script>
+
+</html>

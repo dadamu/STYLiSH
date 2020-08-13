@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stylish 2020 Summer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/commen.css" />
+    <link rel="stylesheet" href="/css/product.css" />
+</head>
+
+<body>
+    <header>
+        <div class="logo"><a href="./"><img src=""></a></div>
+        <nav class="head-nav">
+            <div class="item"><a href="./?tag=women">女裝</a></div>
+            <div class="item"><a href="./?tag=men">男裝</a></div>
+            <div class="item item-end"><a href="./?tag=accessories">配件</a></div>
+        </nav>
+        <div class="feature">
+            <form class="item" action="./">
+                <input type="text" class="search" name="tag">
+            </form>
+            <a href="cart.html" class="item cart">
+                <div id="cart-qty" class="qty">0</div>
+            </a>
+            <div class="item member">
+                <a href="profile.html"><img src=""></a>
+            </div>
+        </div>
+    </header>
+    <nav class="mobile">
+    </nav>
+    <main>
+        <div class="view">
+            <div class="main-image-box">
+                <img id="mainImage" src="">
+            </div>
+            <div id="details" class="details">
+                <div id="title" class="name"></div>
+                <div id="id" class="id"></div>
+                <div id="price" class="price"></div>
+                <div id="colors" class="colors p-end">
+                    <span class="title">顏色 &nbsp; |&nbsp; &nbsp; &nbsp;</span>
+                </div>
+                <div id="sizes" class="sizes p-end ">
+                    <span class="title">尺寸 &nbsp; |&nbsp; &nbsp; &nbsp;</span>
+                </div>
+                <div class="qty p-end">
+                    <span class="title">數量 &nbsp; |&nbsp; &nbsp; &nbsp;</span>
+                    <div id="product-qty" class="chooser">
+						<div id="minus" class="op">-</div>
+						<div id="qty" class="value">1</div>
+						<div id="plus" class="op">+</div>
+					</div>
+                </div>
+                <div id="addCart" class="add-cart">
+                    <button id="add-cart-btn">加入購物車</button>
+                </div>
+                <div class="summary">
+                    <div id="note" class="p-end"></div>
+                    <div id="texture"></div>
+                    <div id="description" class="p-end"></div>
+                    <div>清洗&nbsp;:&nbsp;<span id="wash" class=""></span></div>
+                    <div>產地&nbsp;:&nbsp;<span id="place" class=""></span></div>
+                </div>
+            </div>
+            <div class="separator">
+                <div class="title">更多產品資訊</div>
+                <div class="line"></div>
+            </div>
+            <div id="conclude" class="conclude">
+                <div id="story" class="story p-end"></div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="view">
+            <div class="link link-0">
+                <div class="item">關於 Stylish</div>
+                <div class="item">服務條款</div>
+                <div class="item">隱私政策</div>
+            </div>
+            <div class="link link-1">
+                <div class="item">聯絡我們</div>
+                <div class="item item-end">FAQ</div>
+            </div>
+            <div class="social">
+                <img class="social-img" id="line">
+                <img class="social-img" id="twitter">
+                <img class="social-img" id="facebook">
+            </div>
+            <div class="copyright">
+                © 2020. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="/js/public/commen.js"></script>
+<script src="/js/public/product.js"></script>
+
+</html>

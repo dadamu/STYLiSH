@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stylish Campaign</title>
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/adminCreate.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <h1>Create a New Campaign</h1>
+    <section id="campaignSection" class="container form">
+      <div class="inputDiv">Search Product Title<br>
+        <input id="search" type="text" name="search" />
+      </div>
+      <div id="searchErrorMsg"></div>
+      <form id="campaignForm" enctype="multipart/form-data">
+        <div class="inputDiv">Info<br>
+          <select id="idSelector" required='required' name="idSelector">
+            <option value="">Select One Product by Search</option>
+          </select>
+        </div>
+        <div class="inputDiv">Picture<br />
+          <input id="picture" type="file" required='required' name="picture" />
+          <img src="" class="img_preview" id="picturePreview"></img>
+        </div>
+        <div class="inputDiv">Story<br>
+          <textarea id="story" type="text" name="story"></textarea>
+        </div>
+      </form>
+      <hr>
+      <div id="errorMsg" class="submitMsg error"></div>
+      <input id="create" type="submit" class="submit" value="Create">
+    </section>
+  </div>
+</body>
+<script src="/js/campaign/campaignCreate.js"></script>
+<script src="/js/postData.js"></script>
+
+</html>

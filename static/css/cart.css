@@ -1,0 +1,209 @@
+img{
+    width: 100%;
+}
+
+.view{
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.cartBox{
+    margin: 20px auto;
+}
+
+
+.cartBox .title {
+    margin-left: 30px;
+    width: calc(100% - 20px);
+    font-weight: bold;
+}
+
+.cartBox .row {
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin: 0px auto;
+}
+
+.cartBox .variant {
+    order: 1;
+    width: 240px;
+    display: flex;
+    line-height: 1.5em;
+    font-size: 0.9em;
+}
+
+.cartBox .qty {
+    flex: auto;
+    margin-left:5px;
+    order: 3;
+}
+.cartBox .price {
+    flex: auto;
+    order: 4;
+}
+
+.cartBox .subtotal {
+    flex: auto;
+    order: 5;
+}
+
+
+.cartBox .list {
+    padding: 10px;
+    border: 1px solid #979797;
+}
+
+.cartBox .variant{
+    order: 1;
+    width: 300px;
+    display: flex;
+    line-height: 1.5em;
+    font-size: .9em;
+}
+.cartBox .picture{
+    width : 100px;
+}
+
+.cartBox .detail{
+    margin-left: 10px; 
+}
+
+.cartBox .p-end{
+    margin-bottom : 10px;
+}
+
+.cartBox .remove {
+    flex: none;
+    order: 6;
+    width: 50px;
+    cursor: pointer;
+}
+
+.cartBox .qty select {
+    padding: 4px;
+    background-color: #f3f3f3;
+    border-radius: 4px;
+}
+
+.target {
+    background-color: #e8e8e8;
+    display: flex;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+.target .selector{
+    width: 50%;
+}
+.target span {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.target select {
+    padding: 4px;
+    background-color: #f3f3f3;
+    border-radius: 4px;
+}
+
+.reminder {
+    line-height: 1.5em;
+    margin-bottom: 20px;
+}
+
+.recipient, .payment {
+    margin-bottom: 30px;
+}
+
+.recipient .title, .payment .title {
+    font-weight: bold;
+    border-bottom: 1px solid #3f3a3a;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.line {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.line .text {
+    width: 150px;
+}
+
+.line .input {
+    flex: auto;
+}
+
+.input label {
+    margin-right: 10px;
+}
+
+.payment .title{
+    margin-bottom : 40px;
+}
+
+.payment .line{
+    margin-bottom: 40px; 
+}
+
+.input .tpfield {
+    height: 20px;
+    padding: 5px;
+    width: 200px;
+    border: 1px solid #979797;
+    border-radius: 4px;
+}
+
+.confirm {
+    margin-bottom: 20px;
+    padding-top: 30px;
+    border-top: 1px solid #3f3a3a;
+}
+
+.confirm .row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.confirm .row .title {
+    flex: none;
+    width: 100px;
+}
+
+.confirm .row .price {
+    width: 120px;
+    text-align: right;
+    font-size: 1.5em;
+    color: #3f3a3a;
+}
+
+.confirm .row .separator {
+    height: 1px;
+    background-color: #3f3a3a;
+    width: 240px;
+}
+
+.confirm .price .unit {
+    font-size: 0.75em;
+}
+
+
+main .confirm .row button {
+    width: 240px;
+    max-width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    color: #ffffff;
+    background-color: #000000;
+    border: 1px solid #979797;
+    letter-spacing: 4px;
+    font-size: inherit;
+    cursor: pointer;
+}
