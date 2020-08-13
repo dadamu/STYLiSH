@@ -5,15 +5,15 @@ const crypto = require('crypto');
 const { AWSS3 } = require('../config/config');
 
 
-const infoModel = require("../models/productInfoModel")
-const asyncHandler = require("../module/asyncHandler");
-const imageModel = require("../models/imageModel");
+const infoModel = require('../models/productInfoModel');
+const asyncHandler = require('../module/asyncHandler');
+const imageModel = require('../models/imageModel');
 
 const imageCreate = asyncHandler(async (req, res, next) => {
     let productId = req.params.id;
     let check = await infoModel.check(productId);
     if (check === 0) {
-        let err = new Error("Info id not Exists");
+        let err = new Error('Info id not Exists');
         err.status = 400;
         next(err);
     }
@@ -62,8 +62,8 @@ function uploadImages(req, res, upload) {
             }
             else {
                 let files = req.files;
-                let mainImage = `/img/product/${req.params.id}/${files["main_image"][0].key.split('/').pop()}`;
-                let otherImages = files["other_images"];
+                let mainImage = `/img/product/${req.params.id}/${files['main_image'][0].key.split('/').pop()}`;
+                let otherImages = files['other_images'];
                 for (let i = 0; i < otherImages.length; i++) {
                     otherImages[i] = `/img/product/${req.params.id}/${otherImages[i].key.split('/').pop()}`;
                 }
@@ -81,13 +81,13 @@ function storageSet(s3, productId){
         acl: 'public-read',
         key: function (req, file, cb) {
             crypto.pseudoRandomBytes(16, function (err, raw) {
-                if (err) return cb(err)
-                let destination = `img/product/${productId}/`
+                if (err) return cb(err);
+                let destination = `img/product/${productId}/`;
                 // set dir for img and let file with extname
-                cb(null, destination + raw.toString('hex') + path.extname(file.originalname))
+                cb(null, destination + raw.toString('hex') + path.extname(file.originalname));
             });
         }
-    })
+    });
 }
 
 module.exports = { imageCreate };

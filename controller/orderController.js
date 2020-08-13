@@ -1,9 +1,9 @@
-const axios = require("axios");
-require("dotenv").config();
-const asyncHandler = require("../module/asyncHandler");
-const orderModel = require("../models/orderModel");
-const redisAsync = require("../module/redisAsync");
-const fakeOrderGenerate = require("../module/fakeOrder");
+const axios = require('axios');
+require('dotenv').config();
+const asyncHandler = require('../module/asyncHandler');
+const orderModel = require('../models/orderModel');
+const redisAsync = require('../module/redisAsync');
+const fakeOrderGenerate = require('../module/fakeOrder');
 
 const partnerKey = process.env.PARTNERKEY;
 const merchantID = process.env.MERCHANTID;
@@ -11,24 +11,24 @@ const merchantID = process.env.MERCHANTID;
 const checkoutCreate =
     asyncHandler(async (req, res, next) => {
         let checkout = req.body;
-        let order = checkout["order"];
-        let recipient = order["recipient"];
+        let order = checkout['order'];
+        let recipient = order['recipient'];
 
         let cardholder = {
-            name: recipient["name"],
-            phone_number: recipient["phone"],
-            email: recipient["email"],
-            address: recipient["address"]
+            name: recipient['name'],
+            phone_number: recipient['phone'],
+            email: recipient['email'],
+            address: recipient['address']
         };
 
         let details = getDetails(checkout);
-        let endpoint = "https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime";
+        let endpoint = 'https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime';
         let headers = {
-            "content-type": "application/json",
+            'content-type': 'application/json',
             'x-api-key': partnerKey
         };
 
-        let list = checkout["list"];
+        let list = checkout['list'];
         let recipientId = await orderModel.insertRecipient(recipient);
         let checkoutId = await orderModel.insertCheckout(checkout, recipientId);
         await orderModel.listInsert(list, checkoutId);
@@ -36,11 +36,11 @@ const checkoutCreate =
 
         if (orderStock.length > 0) {
             let pay = {
-                prime: checkout["prime"],
+                prime: checkout['prime'],
                 partner_key: partnerKey,
                 merchant_id: merchantID,
                 details: details,
-                amount: order["total"],
+                amount: order['total'],
                 order_number: checkoutId,
                 cardholder: cardholder,
                 remember: false
@@ -57,13 +57,13 @@ const checkoutCreate =
                 res.json({ data: { number: checkoutId } });
             }
             else {
-                let err = new Error("Wrong Card Information!");
+                let err = new Error('Wrong Card Information!');
                 err.status = 400;
                 next(err);
             }
         }
         else {
-            let err = new Error("Not Enough Stock!");
+            let err = new Error('Not Enough Stock!');
             err.status = 500;
             next(err);
         }
@@ -75,13 +75,13 @@ const paymentsGetCache = asyncHandler(async (req, res) => {
         let checkout = await orderModel.getCheckout();
         if (checkout.length === 0) {
             res.json({ data: [] });
-            return
+            return;
         }
         const data = [];
         let userMap = {};
         checkout.forEach(el => {
-            let total = el["total"];
-            let userId = el["recipient_id"];
+            let total = el['total'];
+            let userId = el['recipient_id'];
             let sum = userMap[userId] || 0;
             userMap[userId] = total + sum;
         });
@@ -108,13 +108,13 @@ const paymentsGet = asyncHandler(async (req, res) => {
     let checkout = await orderModel.getCheckout();
     if (checkout.length === 0) {
         res.json({ data: [] });
-        return
+        return;
     }
     const data = [];
     let userMap = {};
     checkout.forEach(el => {
-        let total = el["total"];
-        let userId = el["recipient_id"];
+        let total = el['total'];
+        let userId = el['recipient_id'];
         let sum = userMap[userId] || 0;
         userMap[userId] = total + sum;
     });
@@ -135,7 +135,7 @@ const paymentsGetGroup = asyncHandler(async (req, res) => {
     let checkout = await orderModel.getCheckoutGroup();
     if (checkout.length === 0) {
         res.json({ data: [] });
-        return
+        return;
     }
     res.json({ data: checkout });
 });
@@ -144,17 +144,17 @@ const fakePaymentsCreate = asyncHandler(async (req, res) => {
     const { userNum, checkoutNum, random } = req.query;
     if (userNum && checkoutNum && random) {
         await fakeOrderGenerate(userNum, checkoutNum, random);
-        await redisAsync.del("payments")
-        res.status(200).send("Success")
+        await redisAsync.del('payments');
+        res.status(200).send('Success');
     }
     else {
-        res.status(403).send("Need more query");
+        res.status(403).send('Need more query');
     }
 });
 
 const resetCache = asyncHandler(async (req, res) => {
     redisAsync.del('payments');
-    res.send("ok");
+    res.send('ok');
 });
 
 /*
@@ -163,12 +163,12 @@ const resetCache = asyncHandler(async (req, res) => {
     return : detail string from input
 */
 function getDetails(checkout) {
-    let detail = "";
-    for (let item of checkout["list"]) {
-        let id = item["id"];
-        let size = item["size"];
-        let color = item["color"]["name"];
-        detail += `${id}:${size}&${color};`
+    let detail = '';
+    for (let item of checkout['list']) {
+        let id = item['id'];
+        let size = item['size'];
+        let color = item['color']['name'];
+        detail += `${id}:${size}&${color};`;
     }
     return detail;
 }

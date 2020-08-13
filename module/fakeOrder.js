@@ -1,9 +1,9 @@
-const { beginConnect, beginQuery, beginRelease, rollback, commit, begin } = require("./mysql");
+const { beginConnect, beginQuery, beginRelease, rollback, commit, begin } = require('./mysql');
 
 
 async function generate(userNum, checkoutNum, random) {
+    const pool = await beginConnect();
     try {
-        const pool = await beginConnect();
         await begin(pool);
         await truncateFakeData(pool);
         await createRecipients(pool, userNum);
@@ -47,7 +47,7 @@ async function truncateFakeData(pool) {
 }
 
 async function createRecipients(pool, count) {
-    let recipients = []
+    let recipients = [];
     for (let i = 0; i < count; i++) {
         let recipient = {
             id: i + 1,
@@ -58,7 +58,7 @@ async function createRecipients(pool, count) {
         };
         recipients.push(Object.values(recipient));
     }
-    let sql = `INSERT INTO recipient VALUES ?`;
+    let sql = 'INSERT INTO recipient VALUES ?';
     await beginQuery(pool, sql, [recipients]);
     return;
 }
@@ -75,7 +75,7 @@ async function createCheckout(pool, start, count, userNum, random) {
         let checkout = {
             id: (i + 1),
             prime: i,
-            payment: "credit_card",
+            payment: 'credit_card',
             subtotal: subtotal,
             freight: 200,
             total: subtotal + 200,
@@ -85,7 +85,7 @@ async function createCheckout(pool, start, count, userNum, random) {
         };
         checouts.push(Object.values(checkout));
     }
-    let sql = `INSERT INTO checkout VALUES ?`;
+    let sql = 'INSERT INTO checkout VALUES ?';
     await beginQuery(pool, sql, [checouts]);
     return;
 }

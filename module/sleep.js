@@ -1,9 +1,9 @@
 //for test
 function sleep(time){
-    console.log("start");
+    console.log('start');
     return new Promise((resolve)=>{
         setTimeout(()=>{
-            console.log("stop");
+            console.log('stop');
             resolve();
         }, time);
     });

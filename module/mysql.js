@@ -1,16 +1,16 @@
-const con = require("../config/sqlConnection");
+const con = require('../config/sqlConnection');
 function query(sql, data) {
     return new Promise((resolve, reject) => {
         con.query(sql, data, (err, res) => {
             if (err) {
                 console.log(err);
-                let errRes = new Error("");
+                let errRes = new Error('');
                 if (err.errno === 1062) {
-                    errRes.message = "Has Existed!";
+                    errRes.message = 'Has Existed!';
                     errRes.status = 403;
                 }
                 else if (err.errno === 1264) {
-                    errRes.message = "Out of Range!";
+                    errRes.message = 'Out of Range!';
                     errRes.status = 403;
                 }
                 else {
@@ -31,9 +31,9 @@ function beginQuery(pool, sql, data) {
         pool.query(sql, data, (err, res) => {
             if(err){
                 console.log(err);
-                let errRes = new Error("");
+                let errRes = new Error('');
                 if (err.errno === 1264) {
-                    errRes.message = "Out of Range!";
+                    errRes.message = 'Out of Range!';
                     errRes.status = 403;
                 }
                 else {
@@ -54,9 +54,9 @@ function beginConnect() {
         con.getConnection((err, connection) => {
             if (err) {
                 console.log(err);
-                let errRes = new Error("");
+                let errRes = new Error('');
                 if (err.errno === 1264) {
-                    errRes.message = "Out of Range!";
+                    errRes.message = 'Out of Range!';
                     errRes.status = 403;
                 }
                 else {
@@ -68,7 +68,7 @@ function beginConnect() {
             else {
                 resolve(connection);
             }
-        })
+        });
     });
 }
 

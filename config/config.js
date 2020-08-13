@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config();
 const AWS = require('aws-sdk');
 
 const HOST = process.env.HOST;

@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-TPDirect.setupSDK(12348, "app_pa1pQcKoY22IlnSXq5m5WP5jFKzoRG58VEXpT7wU62ud7mMbDOGzCYIlzzLF", 'sandbox')
+TPDirect.setupSDK(12348, 'app_pa1pQcKoY22IlnSXq5m5WP5jFKzoRG58VEXpT7wU62ud7mMbDOGzCYIlzzLF', 'sandbox');
 TPDirect.card.setup({
     fields: {
         number: {
@@ -21,8 +21,8 @@ TPDirect.card.setup({
         // Style all elements
         'input': {
             'color': 'gray',
-            'width' : '100%',
-            'height' : '30px'
+            'width': '100%',
+            'height': '30px'
         },
         // Styling ccv field
         'input.cvc': {
@@ -56,5 +56,5 @@ TPDirect.card.setup({
             }
         }
     }
-})
+});
 

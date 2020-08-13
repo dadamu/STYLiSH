@@ -4,44 +4,44 @@ app.init = async () => {
     const start = Date.now();
     await app.render();
     const end = Date.now();
-    console.log( "Render Time: " +(end-start)/1000+ "s");
+    console.log( 'Render Time: ' +(end-start)/1000+ 's');
     app.UIListen();
     const order = {
-        "total": 8607,
-        "list": [
+        'total': 8607,
+        'list': [
             {
-                "id": 10,
-                "price": 890,
-                "color": {
-                    "code": "#800080",
-                    "name": "Purple"
+                'id': 10,
+                'price': 890,
+                'color': {
+                    'code': '#800080',
+                    'name': 'Purple'
                 },
-                "size": "M",
-                "qty": 2
+                'size': 'M',
+                'qty': 2
             },
             {
-                "id": 8,
-                "price": 747,
-                "color": {
-                    "code": "#00EEEE",
-                    "name": "Aqua"
+                'id': 8,
+                'price': 747,
+                'color': {
+                    'code': '#00EEEE',
+                    'name': 'Aqua'
                 },
-                "size": "L",
-                "qty": 7
+                'size': 'L',
+                'qty': 7
             },
             {
-                "id": 2,
-                "price": 799,
-                "color": {
-                    "code": "#00EEEE",
-                    "name": "Aqua"
+                'id': 2,
+                'price': 799,
+                'color': {
+                    'code': '#00EEEE',
+                    'name': 'Aqua'
                 },
-                "size": "L",
-                "qty": 2
+                'size': 'L',
+                'qty': 2
             }
         ]
     };
-    $('#order').val(JSON.stringify(order))
+    $('#order').val(JSON.stringify(order));
 };
 
 
@@ -55,9 +55,9 @@ app.render = async () => {
 
 app.showTotal = async () => {
     let get = await app.get('/api/1.0/midterm/total');
-    const total = get.data.total
+    const total = get.data.total;
     $('#number').html('Total Revenue: ' + total);
-}
+};
 
 app.showPie = async () => {
     const pie = { values: [], labels: [], marker: { colors: [] }, type: 'pie' };
@@ -131,7 +131,7 @@ app.showStack = async () => {
         });
         return trace;
     }
-}
+};
 
 app.get = async (endpoint) => {
     const get = await fetch(endpoint);
@@ -141,7 +141,7 @@ app.get = async (endpoint) => {
 
 app.UIListen = () => {
     $('#newOrder').click(async() => {
-        const body = $("#order").val();
+        const body = $('#order').val();
         const method = 'POST';
         const headers = {
             'user-agent': 'Mozilla/4.0 MDN Example',
@@ -153,7 +153,7 @@ app.UIListen = () => {
     });
 
     $('#refresh').click(async () => {
-        const pass = window.prompt("refreshing all data will take some time", "");
+        const pass = window.prompt('refreshing all data will take some time', '');
         const body = JSON.stringify({ pass });
         const method = 'POST';
         const headers = {
@@ -164,6 +164,6 @@ app.UIListen = () => {
         const result = await res.json();
         alert(result.msg);
     });
-}
+};
 
 $(document).ready(app.init);

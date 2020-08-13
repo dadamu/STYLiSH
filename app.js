@@ -1,7 +1,7 @@
-const express = require("express");
+const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const apiRouter = require("./api/api-1.0");
+const apiRouter = require('./api/api-1.0');
 
 const app = express();
 const server = require('http').createServer(app);
@@ -11,11 +11,11 @@ app.set('socket', io);
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static("static"));
-app.use("/api", apiRouter);
+app.use(express.static('static'));
+app.use('/api', apiRouter);
 
 app.use((req, res, next) => {
-    const err = new Error("Not Found");
+    const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
@@ -28,5 +28,5 @@ app.use((err, req, res, next) => {
 
 
 server.listen(3000, function () {
-    console.log(`Server Start!`);
+    console.log('Server Start!');
 });

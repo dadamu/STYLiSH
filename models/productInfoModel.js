@@ -7,18 +7,18 @@ const { query } = require('../module/mysql');
     return : select length
 */
 async function check(id){
-    let  sql = `SELECT * FROM product_info Where product_id = ?;`;
+    let  sql = 'SELECT * FROM product_info Where product_id = ?;';
     let select = await query(sql, id);
     return select.length;
 }
 
 
 async function create(info) {
-    info["product_id"] = info["id"];
-    info["main_image"] = "";
-    delete info["id"];
-    delete info["mainImage"];
-    let sql = `INSERT INTO product_info SET ?`;
+    info['product_id'] = info['id'];
+    info['main_image'] = '';
+    delete info['id'];
+    delete info['mainImage'];
+    let sql = 'INSERT INTO product_info SET ?';
     let insert = await query(sql, info);
     return insert;
 }
@@ -26,20 +26,20 @@ async function create(info) {
 
 async function get(data) {
     let sql;
-    if (data["id"]) {
-        sql = `SELECT * FROM product_info WHERE product_id = ?;`;
+    if (data['id']) {
+        sql = 'SELECT * FROM product_info WHERE product_id = ?;';
         data = data.id;
     }
-    else if (data["keyword"]) {
-        sql = `SELECT * FROM product_info WHERE title LIKE ? LIMIT 7 OFFSET ?;`;
+    else if (data['keyword']) {
+        sql = 'SELECT * FROM product_info WHERE title LIKE ? LIMIT 7 OFFSET ?;';
         data = [`%${data.keyword}%`, data.paging * 6];
     }
-    else if (data["category"] === "all") {
-        sql = `SELECT * FROM product_info LIMIT 7 OFFSET ?;`;
+    else if (data['category'] === 'all') {
+        sql = 'SELECT * FROM product_info LIMIT 7 OFFSET ?;';
         data = data.paging * 6;
     }
     else {
-        sql = `SELECT * FROM product_info WHERE category = ? LIMIT 7 OFFSET ?;`;
+        sql = 'SELECT * FROM product_info WHERE category = ? LIMIT 7 OFFSET ?;';
         data = [data.category, data.paging * 6];
     }
     let select = await query(sql, data);
@@ -52,7 +52,7 @@ async function get(data) {
     return : update obj
 */
 async function updateImage(list) {
-    let sql =  `UPDATE product_info SET main_image = ? WHERE product_id = ?;`;
+    let sql =  'UPDATE product_info SET main_image = ? WHERE product_id = ?;';
     let update = await query(sql, list);
     return update;
 }

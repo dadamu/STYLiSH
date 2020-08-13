@@ -1,17 +1,17 @@
-/* global localStorage getUrlVars $ */
+/* global getUrlVars $ */
 
 function webDo() {
-    let cart = localStorage.getItem("cart");
+    let cart = localStorage.getItem('cart');
     let cartObj = JSON.parse(cart);
     let query = getUrlVars();
-    let number = query["number"];
+    let number = query['number'];
     
     let list = [];
     if (cartObj) {
-        list = cartObj["list"];
+        list = cartObj['list'];
     }
-    $("#cart-qty").text(list.length);
-    $("#number").text(number);
+    $('#cart-qty').text(list.length);
+    $('#number').text(number);
 }
 
 webDo();

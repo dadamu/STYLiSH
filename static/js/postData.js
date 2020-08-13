@@ -1,4 +1,3 @@
-/* global fetch */
 // eslint-disable-next-line no-unused-vars
 async function postData(endpoint, data, contentType, errMsg, button) {
     let headers = {
@@ -17,12 +16,12 @@ async function postData(endpoint, data, contentType, errMsg, button) {
     response = await response.json();
     console.log(response);
     if (response.error) {
-        errMsg.style.color = "red";
+        errMsg.style.color = 'red';
         errMsg.innerHTML = response.error;
     }
     else {
-        errMsg.innerText = "Success!";
-        errMsg.style.color = "green";
+        errMsg.innerText = 'Success!';
+        errMsg.style.color = 'green';
         //button.remove();
     }
 }

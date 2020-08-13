@@ -1,13 +1,12 @@
-const addVariantButton = document.getElementById("addVariant");
-const variantBox = document.getElementById("variantBox");
-const size = document.getElementById("sizeSelector");
-const colorName = document.getElementById("colorName");
-const colorCode = document.getElementById("colorCode");
-const stock = document.getElementById("stock");
-const variantErrorMsg = document.getElementById("variantErrorMsg");
+const addVariantButton = document.getElementById('addVariant');
+const variantBox = document.getElementById('variantBox');
+const size = document.getElementById('sizeSelector');
+const colorName = document.getElementById('colorName');
+const colorCode = document.getElementById('colorCode');
+const stock = document.getElementById('stock');
+const variantErrorMsg = document.getElementById('variantErrorMsg');
 
 //add variant information
-/* global document */
 addVariantButton.addEventListener('click', () => {
     const newVariant = document.createElement('div');
     const newDeleteButton = document.createElement('button');
@@ -19,14 +18,14 @@ addVariantButton.addEventListener('click', () => {
         newVariant.innerHTML = `${size.value};${colorName.value};${colorCode.value};${stock.value};`;
         newVariant.appendChild(newDeleteButton);
         variantBox.appendChild(newVariant);
-        stock.value = "";
-        variantErrorMsg.innerHTML = "";
+        stock.value = '';
+        variantErrorMsg.innerHTML = '';
     }
     else if (size.value == '' | colorName.value == '' | colorCode.value == '' | stock.value == '') {
-        variantErrorMsg.innerHTML = "Can not be empty!";
+        variantErrorMsg.innerHTML = 'Can not be empty!';
     }
     else {
-        variantErrorMsg.innerHTML = "Color code must be 6 characters!";
+        variantErrorMsg.innerHTML = 'Color code must be 6 characters!';
 
     }
 });

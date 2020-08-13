@@ -1,6 +1,6 @@
-var asyncHandler = require("../module/asyncHandler");
-const productModel = require("../models/productModel");
-const redisAsync = require("../module/redisAsync");
+var asyncHandler = require('../module/asyncHandler');
+const productModel = require('../models/productModel');
+const redisAsync = require('../module/redisAsync');
 const infoModel = require('../models/productInfoModel');
 
 const detailsGet =
@@ -11,7 +11,7 @@ const detailsGet =
         if (cacheData) {
             let data = JSON.parse(cacheData);
             res.json(data);
-            return
+            return;
         }
         let sqlData = await productModel.get({ id });
         sqlData = sqlData['data'];
@@ -22,7 +22,7 @@ const detailsGet =
             return;
         }
         else {
-            let err = new Error("Not Found");
+            let err = new Error('Not Found');
             err.status = 404;
             next(err);
             return;
@@ -41,7 +41,7 @@ const searchGet =
             res.json(result);
         }
         else {
-            let err = new Error("Not Found");
+            let err = new Error('Not Found');
             err.status = 404;
             next(err);
         }
@@ -59,7 +59,7 @@ const categoryGet =
             res.json(data);
         }
         else {
-            let err = new Error("Not Found");
+            let err = new Error('Not Found');
             err.status = 404;
             next(err);
         }
@@ -74,7 +74,7 @@ const productCreate =
         //check Product Id
         let check = await infoModel.check(productId);
         if (check.length == 0) {
-            let err = new Error("Info id not Exists");
+            let err = new Error('Info id not Exists');
             err.status = 400;
             next(err);
         }

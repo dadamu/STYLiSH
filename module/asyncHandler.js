@@ -6,7 +6,7 @@ function asyncHandler(cb) {
         } catch (err) {
             next(err);
         }
-    }
+    };
 }
 
 module.exports = asyncHandler;

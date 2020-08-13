@@ -1,8 +1,8 @@
 const { query, beginConnect, beginQuery, begin, commit, rollback, beginRelease } = require('../module/mysql');
 
 async function createFromAuthor(orders) {
+    const pool = await beginConnect();
     try {
-        const pool = await beginConnect();
         await begin(pool);
         await initTable(pool);
         let sql = '';
@@ -15,7 +15,7 @@ async function createFromAuthor(orders) {
 
             const orderSql = 'INSERT INTO m_order SET ?;';
             sql += orderSql;
-            insert.push({ id: orderId, total })
+            insert.push({ id: orderId, total });
 
             list.forEach((product) => {
                 const { color, size, id, price, qty } = product;
@@ -44,17 +44,17 @@ async function createFromAuthor(orders) {
                 console.log(`${Math.floor(orderId / 5000 * 100)}% success`);
                 insert = [];
                 sql = '';
-            };
+            }
         }
 
         if (insert.length !== 0) {
             await beginQuery(pool, sql, insert);
         }
-        console.log("part1 success");
+        console.log('part1 success');
 
         //add sold product table
         const products = await beginQuery(pool, 'SELECT * FROM m_product');
-        const productMap = {}
+        const productMap = {};
         products.forEach(product => {
             const { product_id: id, color_code: code, size, variant_id: variantId } = product;
             productMap[id + code + size] = variantId;
@@ -68,7 +68,7 @@ async function createFromAuthor(orders) {
             list.forEach((product) => {
                 const { color, size, id } = product;
                 const hash = id + color.code + size;
-                productSoldSql = "INSERT INTO m_product_sold SET ?;";
+                const productSoldSql = 'INSERT INTO m_product_sold SET ?;';
                 insert.push({
                     variant_id: productMap[hash],
                     sold_id: soldId++
@@ -81,13 +81,13 @@ async function createFromAuthor(orders) {
                 console.log(`${Math.floor(orderId / 5000 * 100)}% success`);
                 insert = [];
                 sql = '';
-            };
+            }
         }
         if (insert.length !== 0) {
             await beginQuery(pool, sql, insert);
         }
         await commit(pool);
-        console.log("success");
+        console.log('success');
         await beginRelease(pool);
         return true;
     }
@@ -147,7 +147,7 @@ async function sizeStackGet() {
         let current = sum[el.product_id] || 0;
         sum[el.product_id] = current + el.qty;
     });
-    sumSorted = Object.keys(sum).sort(function (a, b) { return sum[b] - sum[a] })
+    const sumSorted = Object.keys(sum).sort(function (a, b) { return sum[b] - sum[a]; });
     sumSorted.length = 5;
     const result = [];
     sumSorted.forEach(item => {
@@ -158,17 +158,14 @@ async function sizeStackGet() {
 }
 
 async function newOrderCreate(order) {
+    const pool = await beginConnect();
     try {
-        const pool = await beginConnect();
         await begin(pool);
         const { total, list } = order;
 
         const orderSql = 'INSERT INTO m_order SET ?;';
         const orderInsert = await beginQuery(pool, orderSql, { total });
         const orderId = orderInsert.insertId;
-
-        let sql = '';
-        const insert = [];
         list.forEach(async (product) => {
             const { color, size, id, price, qty } = product;
             const colorSql = 'INSERT IGNORE INTO m_color SET ?;';
@@ -191,7 +188,7 @@ async function newOrderCreate(order) {
             const selectVariantSql = 'SELECT variant_id FROM m_product WHERE product_id = ? AND color_code = ? AND size = ?;';
             const variantSelect = await beginQuery(pool, selectVariantSql, [id, color.code, size]);
 
-            const productSoldSql = "INSERT INTO m_product_sold SET ?;";
+            const productSoldSql = 'INSERT INTO m_product_sold SET ?;';
             const variantId = variantSelect[0].variant_id;
             await beginQuery(pool, productSoldSql, {
                 variant_id: variantId,
@@ -208,6 +205,6 @@ async function newOrderCreate(order) {
         await beginRelease(pool);
         return false;
     }
-};
+}
 
 module.exports = { createFromAuthor, totalGet, priceHistogramGet, colorPieGet, sizeStackGet, newOrderCreate };

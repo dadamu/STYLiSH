@@ -6,7 +6,7 @@ function getAllData(prime) {
     let recipient = formToObj(recipientData);
     let orderData = new FormData(orderForm);
     let order = formToObj(orderData);
-    order["recipient"] = recipient;
+    order['recipient'] = recipient;
     return { prime, order, list };
 }
 
@@ -19,7 +19,7 @@ function formToObj(form) {
 }
 
 function getList() {
-    let orderList = document.getElementsByClassName("product");
+    let orderList = document.getElementsByClassName('product');
     let list = [];
     for (let item of orderList) {
         let obj = getRow(item);
@@ -32,12 +32,12 @@ function getRow(row) {
     let obj = {};
     obj.color = {};
     let itemInfo = row.innerText.split(';');
-    obj["id"] = itemInfo[0];
-    obj["name"] = itemInfo[1];
-    obj["price"] = itemInfo[2];
-    obj["color"]["name"] = itemInfo[3];
-    obj["color"]["code"] = itemInfo[4];
-    obj["size"] = itemInfo[5];
-    obj["qty"] = itemInfo[6];
+    obj['id'] = itemInfo[0];
+    obj['name'] = itemInfo[1];
+    obj['price'] = itemInfo[2];
+    obj['color']['name'] = itemInfo[3];
+    obj['color']['code'] = itemInfo[4];
+    obj['size'] = itemInfo[5];
+    obj['qty'] = itemInfo[6];
     return obj;
 }

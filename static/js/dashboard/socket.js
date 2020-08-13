@@ -1,9 +1,10 @@
+/* global app io $ */
 app.on = (event, callback) => {
     app.socket.on(event, callback);
 };
 
 app.emit = async (event, Obj) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         try {
             app.socket.emit(event, Obj);
             resolve();

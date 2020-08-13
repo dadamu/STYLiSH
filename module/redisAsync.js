@@ -1,11 +1,11 @@
-const { client } = require("../config/redisConnection");
+const { client } = require('../config/redisConnection');
 
 client.on('connect', () => {
     console.log('Redis client connected');
-  });
+});
 
 client.on('error', (err) => {
-    console.log("Error " + err)
+    console.log('Error ' + err);
 });
 
 async function set(key, value) {
@@ -18,7 +18,7 @@ async function set(key, value) {
             if (err) {
                 console.log(err);
                 reject(err);
-                return
+                return;
             }
             resolve(result);
         });
@@ -32,7 +32,7 @@ async function get(key) {
             return;
         }
         client.get(key, (err, result) => {
-             console.log("get from cache")
+            console.log('get from cache');
             if (err) {
                 console.log(err);
                 reject(err);

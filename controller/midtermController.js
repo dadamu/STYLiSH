@@ -1,19 +1,19 @@
-const axios = require("axios");
-const asyncHandler = require("../module/asyncHandler");
-const midtermModel = require("../models/midtermModel");
-const redisAsync = require("../module/redisAsync");
+const axios = require('axios');
+const asyncHandler = require('../module/asyncHandler');
+const midtermModel = require('../models/midtermModel');
+const redisAsync = require('../module/redisAsync');
 
 const createOrderFromAuthor =
     asyncHandler(async (req, res) => {
         const io = req.app.get('socket');
         const { pass } = req.body;
         if (pass !== 'stylish') {
-            res.status(403).json({ msg :'Invalid'});
+            res.status(403).json({ msg: 'Invalid'});
             return;
         }
         const getOrder = await axios.get('http://arthurstylish.com:1234/api/1.0/order/data');
         const { data: getData } = getOrder;
-        res.status(201).json({msg : 'Requeset Success'});
+        res.status(201).json({msg: 'Requeset Success'});
         const result = await midtermModel.createFromAuthor(getData);
         if (result) {
             await redisAsync.del('total');
@@ -24,7 +24,7 @@ const createOrderFromAuthor =
             io.emit('refresh');
         }
         else {
-            res.status(500).json({msg :'Error'});
+            res.status(500).json({msg: 'Error'});
         }
     });
 
@@ -96,11 +96,11 @@ const newOrderCreate =
             await redisAsync.del('sizeStack');
             console.log('delete Redis');
             io.emit('refresh');
-            res.json({ msg: "success" });
+            res.json({ msg: 'success' });
         }
         else{
-            res.status(500).json({msg : 'Something Wrong'});
+            res.status(500).json({msg: 'Something Wrong'});
         }
     });
 
-module.exports = { createOrderFromAuthor, totalGet, priceHistogramGet, colorPieGet, sizeStackGet, newOrderCreate }
+module.exports = { createOrderFromAuthor, totalGet, priceHistogramGet, colorPieGet, sizeStackGet, newOrderCreate };

@@ -1,12 +1,12 @@
-const asyncHandler = require("../module/asyncHandler");
+const asyncHandler = require('../module/asyncHandler');
 const infoModel = require('../models/productInfoModel');
-const redisAsync = require("../module/redisAsync");
-const campaignModel = require("../models/compaignModel");
+const redisAsync = require('../module/redisAsync');
+const campaignModel = require('../models/compaignModel');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const crypto = require('crypto');
 const path = require('path');
-const { AWSS3, IMG_HOST } = require("../config/config");
+const { AWSS3, IMG_HOST } = require('../config/config');
 
 
 
@@ -16,10 +16,10 @@ let storage = multerS3({
     acl: 'public-read',
     key: function (req, file, cb) {
         crypto.pseudoRandomBytes(16, function (err, raw) {
-            if (err) return cb(err)
-            let destination = `img/campaign/`
+            if (err) return cb(err);
+            let destination = 'img/campaign/';
             // set dir for img and let file with extname
-            cb(null, destination + raw.toString('hex') + path.extname(file.originalname))
+            cb(null, destination + raw.toString('hex') + path.extname(file.originalname));
         });
     }
 });
@@ -29,7 +29,7 @@ const campaignCreate =
         let productId = req.params.id;
         let check = await infoModel.check(productId);
         if (check === 0) {
-            let err = new Error("Info id not Exists");
+            let err = new Error('Info id not Exists');
             err.status = 400;
             next(err);
         }
@@ -61,7 +61,7 @@ const campaignGet =
         if (!cacheData) {
             let sqlData = await campaignModel.getAll();
             sqlData.forEach((el) => {
-                el["picture"] = IMG_HOST + el["picture"];
+                el['picture'] = IMG_HOST + el['picture'];
             });
             let data = { data: sqlData };
             redisAsync.set('campaigns', JSON.stringify(data));
@@ -85,8 +85,8 @@ function uploadImage(req, res, upload) {
             }
             else {
                 let otherInfo = req.body;
-                let id = otherInfo["idSelector"];
-                let story = otherInfo["story"];
+                let id = otherInfo['idSelector'];
+                let story = otherInfo['story'];
                 let file = req.file;
                 let pictureUrl = `/img/campaign/${file.key.split('/').pop()}`;
 
@@ -97,4 +97,4 @@ function uploadImage(req, res, upload) {
 }
 
 
-module.exports = { campaignCreate, campaignGet, }
+module.exports = { campaignCreate, campaignGet, };
