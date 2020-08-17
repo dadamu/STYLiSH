@@ -26,6 +26,7 @@
 * S3
 * CDN
 * ELB
+* ElastiCache
 * Auto Scaling
 
 ### Networking
@@ -48,7 +49,8 @@
 
 ## Structure
 
-![](https://i.imgur.com/8Cd7t6n.png)
+![](https://i.imgur.com/zI7rsjK.png)
+
 
 ## Database Design
 
