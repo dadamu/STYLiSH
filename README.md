@@ -44,12 +44,12 @@
 
 ### Others
 
-* Third party login: Facebook Oauth
-* Design Parttern: MVC
+* Third party login with Facebook Oauth
+* MVC Design Parttern
 
 ## Structure
 
-![](https://i.imgur.com/zI7rsjK.png)
+![](https://i.imgur.com/gPMolf9.png)
 
 
 ## Database Design
